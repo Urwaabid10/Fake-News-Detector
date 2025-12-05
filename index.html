@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="maincon">
+        <h1>
+            Fake News Detector
+        </h1>
+        <p>
+            Analyse Article ,Social Media Posts and Headlines for Credibility
+        </p>
+    </div>
+    <div class="container">
+        <textarea name="entertext" id="entertext" cols="70vw" rows="20vh"
+            placeholder="Enter the text or article to check..."></textarea>
+        <div class="button1">
+            <button class="uploadbtn">Upload Screenshot or Document</button>
+            <button class="analysebtn" onclick="Analyse()">Analyse</button>
+        </div>
+    </div>
+    <div class="results">
+
+        <div class="credibility">
+            <h3>Credibilty Score</h3>
+            <p class="score"></p>
+        </div>
+        <div class="cred">
+            <div class="credvalue">
+                <h3>Credibilty Value</h2>
+            </div>
+
+            <div class="phrase">
+                <h3>Highlighted Phrase</h3>
+            </div>
+        </div>
+    </div>
+    <div class="sources">
+        <p>
+        <h2>Trusted Sources</h2>
+        <ul>
+            <li>Reuters</li>
+            <li>BBC News</li>
+            <li>The Associated Press</li>
+        </ul>
+        </p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

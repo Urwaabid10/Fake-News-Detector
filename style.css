@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.maincon{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+#entertext{
+   margin: 20px;
+   padding:10px;
+   border-radius: 10px;
+   border:2px solid rgb(171, 165, 165);
+}
+.button1{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px
+}
+.uploadbtn{
+    background-color:rgb(81, 104, 218);
+    height:9vh;
+    width:10vw;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+     color:white;
+
+}
+.uploadbtn:active, .analysebtn:active{
+    background-color: white;
+    color: rgb(81, 104, 218);
+    border:2px solid rgb(81, 104, 218);
+}
+.analysebtn{
+    background-color:rgb(81, 104, 218);
+    height:9vh;
+    width:10vw;
+    border-radius: 10px;
+    border: none;
+    color:white;
+}
+.results{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+    box-sizing: border-box;
+}
+.credibility{
+    border:1px solid rgb(169, 165, 165);
+    height:30vh;
+    width:20vw;
+      padding:5px;
+    border-radius: 10px;
+    text-align: center;
+    align-content:center;
+    
+}
+.credvalue, .phrase{
+      border:1px solid rgb(169, 165, 165);
+      height:15vh;
+      width:15vw;
+      padding:5px;
+      border-radius: 10px;
+      
+}
+p{
+    font-size:14px;
+}
+.score{
+    font-size: 50px;
+    justify-content:center;
+   
+}
+
+
+.sources{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:40px;
+
+}
+@media (max-width:750px){
+    .credibility{
+    width:50vw;
+    }
+    .analysebtn, .uploadbtn{
+     width: 20vw;
+    font-size: 14px;
+    }
+    .phrase{
+         font-size: 13px;
+        margin-top: 5px;
+        text-align: center;
+        width:50vw;
+
+    }
+    .credvalue{
+        width:50vw;
+    }
+}
