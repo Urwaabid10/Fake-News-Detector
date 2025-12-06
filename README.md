@@ -10,6 +10,6 @@ A simple tool to analyze news credibility using Google Gemini AI.
 1.  Open a terminal in this folder.
 2.  Run:
     ```bash
-    npx serve
+    npx serve .
     ```
 3.  Open the link shown (usually `http://localhost:3000`).
