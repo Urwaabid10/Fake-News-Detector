@@ -96,13 +96,13 @@ p{
     margin:40px;
 
 }
-@media (max-width:750px){
+@media (max-width:1250px){
     .credibility{
     width:50vw;
     }
     .analysebtn, .uploadbtn{
      width: 20vw;
-    font-size: 14px;
+    font-size: 12px;
     }
     .phrase{
          font-size: 13px;
@@ -114,4 +114,17 @@ p{
     .credvalue{
         width:50vw;
     }
+    #entertext{
+        margin:5px;
+        width:100%
+    }
+    .firstline{
+        text-align:center;
+    }
+}
+@media (max-width:450px){
+    .analysebtn,.uploadbtn{
+        width: 40vw;
+    }
+    
 }
