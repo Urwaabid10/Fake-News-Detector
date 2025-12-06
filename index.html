@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fake News Detector - Truth Engine</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -16,6 +21,17 @@
         <p>
             Analyse Article ,Social Media Posts and Headlines for Credibility
         </p>
+    </div>
+    <div class="demo-buttons" style="display: flex; gap: 10px; margin-bottom: 10px; justify-content: center;">
+        <button onclick="prefillDemo('fake')" class="demo-btn fake"
+            style="background-color: #ff4444; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Demo:
+            Fake News</button>
+        <button onclick="prefillDemo('real')" class="demo-btn real"
+            style="background-color: #00C851; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Demo:
+            Real News</button>
+        <button onclick="prefillDemo('scam')" class="demo-btn scam"
+            style="background-color: #ffbb33; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Demo:
+            Scam</button>
     </div>
     <div class="container">
         <textarea name="entertext" id="entertext" cols="70vw" rows="20vh"
