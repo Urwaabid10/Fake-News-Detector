@@ -134,6 +134,33 @@ h1 {
     box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
 }
 
+.webhook-section {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.glass-input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.glass-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+}
+
 .button1 {
     display: flex;
     justify-content: center;

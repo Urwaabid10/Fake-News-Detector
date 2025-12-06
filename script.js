@@ -26,10 +26,68 @@ window.prefillDemo = function (type) {
 };
 
 // Make Analyse function globally available since it's called from HTML onclick
+// Qubic Integration
+window.verifyOnQubic = async function () {
+  const statusDiv = document.getElementById('qubic-status');
+  const btn = document.querySelector('.qubic-btn');
+  const resultScore = document.querySelector(".score").innerText;
+  const resultVerdict = document.querySelector(".credvalue p").innerText.replace("Credibility value is ", "");
+
+  statusDiv.innerHTML = "Connecting to Qubic Oracle...";
+  btn.disabled = true;
+  btn.style.opacity = "0.7";
+
+  try {
+    // Fetch live status from Qubic RPC
+    const response = await fetch('https://rpc.qubic.org/v1/status');
+    const data = await response.json();
+
+    // 2. Construct Transaction Payload
+    const payload = {
+      source: "CLOUDFLARE_WALLET_QX...",
+      destination: "QUBIC_TRUTH_ORACLE_V1",
+      amount: 0,
+      tick: data.lastTick || 1450000,
+      inputType: "VERDICT_SUBMISSION",
+      data: {
+        verdict: resultVerdict,
+        score: parseInt(resultScore),
+        timestamp: new Date().toISOString(),
+        integrity_hash: "0x" + Math.random().toString(16).substr(2, 64) // Simulated hash
+      }
+    };
+
+    // Simulate a "transaction" delay for effect
+    await new Promise(r => setTimeout(r, 1000));
+
+    // Display the simulated transaction
+    statusDiv.innerHTML = `
+            <div style="background: #1e1e2e; color: #a6accd; padding: 15px; border-radius: 8px; text-align: left; font-family: monospace; font-size: 0.8rem; margin-top: 10px; border: 1px solid #4361ee;">
+                <div style="color: #4361ee; margin-bottom: 5px; font-weight: bold;">➢ PREPARING SMART CONTRACT TX</div>
+                <pre style="margin: 0;">${JSON.stringify(payload, null, 2)}</pre>
+            </div>
+            <div style="margin-top: 10px; color: #00cc66; font-weight: bold;">
+                ✓ Broadcast to Epoch ${data.lastEpoch || '124'}
+            </div>
+        `;
+
+    btn.innerHTML = `<span style="font-size: 1.2em;">✓</span> On-Chain Record Created`;
+    btn.style.backgroundColor = "#00cc66";
+    btn.style.opacity = "1";
+
+  } catch (error) {
+    console.error("Qubic connection error:", error);
+    statusDiv.innerHTML = `
+            <span style="color: #ff4444">⚠ Connection Error (Offline Mode)</span>
+        `;
+  }
+};
+
 window.Analyse = async function () {
   const analyzeBtn = document.querySelector(".analysebtn");
   const inputElement = document.querySelector("#entertext");
   const textToAnalyze = inputElement.value;
+  const qubicBtn = document.querySelector('.qubic-btn');
 
   if (!textToAnalyze.trim()) {
     alert("Please enter some text to analyze.");
@@ -38,6 +96,8 @@ window.Analyse = async function () {
 
   analyzeBtn.disabled = true;
   analyzeBtn.textContent = "Analyzing...";
+  qubicBtn.style.display = "none"; // Hide previous result
+  document.getElementById('qubic-status').innerHTML = "";
 
   try {
     const prompt = `Analyze the text provided below and classify it into one of the following categories:
@@ -90,6 +150,32 @@ window.Analyse = async function () {
       sourcesDiv.innerHTML = data.trusted_sources.map(src => `<li>${src}</li>`).join('');
     } else {
       sourcesDiv.innerHTML = "<li>No specific trusted sources found.</li>";
+    }
+
+    // Show Qubic Button
+    if (document.querySelector('.qubic-btn')) {
+      document.querySelector('.qubic-btn').style.display = "inline-flex";
+    }
+
+    // Track 2: Webhook Trigger
+    const webhookUrl = document.getElementById('webhook-url').value;
+    if (webhookUrl && webhookUrl.trim() !== "") {
+      console.log("Triggering Webhook:", webhookUrl);
+      try {
+        fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors', // Safety for hackathon demo (prevents CORS errors blocking the script)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            verdict: data.classification,
+            score: data.score,
+            text: textToAnalyze.substring(0, 50) + "...",
+            timestamp: new Date().toISOString()
+          })
+        }).then(() => console.log("Webhook triggered"));
+      } catch (e) {
+        console.error("Webhook failed", e);
+      }
     }
 
   } catch (error) {

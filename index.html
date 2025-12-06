@@ -40,6 +40,22 @@
             <button class="uploadbtn">Upload Screenshot or Document</button>
             <button class="analysebtn" onclick="Analyse()">Analyse</button>
         </div>
+        <!-- Track 2: EasyConnect Integration -->
+        <div class="webhook-section">
+            <input type="text" id="webhook-url" placeholder="Optional: Paste Zapier/Make Webhook URL here..."
+                class="glass-input">
+        </div>
+
+        <!-- Qubic Verification Button -->
+        <div class="qubic-section" style="display:flex; justify-content:center; margin-top:20px;">
+            <button onclick="verifyOnQubic()" class="qubic-btn"
+                style="display:none; background-color: #4361ee; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); align-items: center; gap: 8px;">
+                <span style="font-size: 1.2em;">⬢</span> Verify Proof on Qubic Network
+            </button>
+        </div>
+        <div id="qubic-status"
+            style="text-align: center; margin-top: 10px; margin-bottom: 20px; color: #4361ee; font-weight: 500; min-height: 20px; height: auto;">
+        </div>
     </div>
     <div class="results">
 
